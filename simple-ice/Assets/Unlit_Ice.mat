@@ -27,6 +27,14 @@ Material:
         m_Texture: {fileID: 2800000, guid: a4206edc80900494a9ef51dace75b010, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _ColorRampTex:
+        m_Texture: {fileID: 2800000, guid: a97deca40dd996f4cbace123f4540c6a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DistortTex:
+        m_Texture: {fileID: 2800000, guid: 91d36b6ba3ba5b7498f85caea385191e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -37,7 +45,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _EdgeThickness: 1
+    - _DistortStrength: 0.01
+    - _EdgeThickness: 0.294
+    - _Transparency: 0.218
     m_Colors:
-    - _Color: {r: 0.21293801, g: 1, b: 0.28557947, a: 1}
+    - _Color: {r: 0.21293801, g: 1, b: 0.28557947, a: 0.27058825}
   m_BuildTextureStacks: []
