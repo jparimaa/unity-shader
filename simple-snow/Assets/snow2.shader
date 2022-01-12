@@ -9,6 +9,8 @@ Shader "Custom/snow2"
         _SnowColor("Snow color", Color) = (0.6678787, 0.8620635, 0.9622642, 1)
         _SnowSpread("Snow spread", Range(0.0, 1.0)) = 0.5
         _SnowHeight("Snow height", Range(0.0, 0.05)) = 0.01
+        _RimColor ("Rim Color", Color) = (0.19,0.19,0.26,0.0)
+        _RimPower ("Rim Power", Range(0.5,8.0)) = 3.0
     }
     SubShader
     {
@@ -28,6 +30,7 @@ Shader "Custom/snow2"
         {
             float2 uv_MainTex;
             float3 worldNormal;
+            float3 viewDir;
         };
 
         half _Glossiness;
@@ -36,6 +39,8 @@ Shader "Custom/snow2"
         uniform float4 _SnowColor;
         uniform float _SnowSpread;
         uniform float _SnowHeight;
+        float4 _RimColor;
+        float _RimPower;
 
         // Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
         // See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
@@ -57,6 +62,8 @@ Shader "Custom/snow2"
                 o.Albedo = _SnowColor.rgb;
                 o.Metallic = 0.8;
                 o.Smoothness = 0.2;
+                half rim = 1.0 - saturate(dot (normalize(IN.viewDir), o.Normal));
+                o.Emission = _RimColor.rgb * pow (rim, _RimPower);
             } else {
                 fixed4 c = tex2D (_MainTex, IN.uv_MainTex);
                 o.Albedo = c.rgb;
